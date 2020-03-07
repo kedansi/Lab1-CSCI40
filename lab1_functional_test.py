@@ -55,10 +55,52 @@ class NewVisitorTest(unittest.TestCase):
 		back_to_heroes_list_button.click()
 		self.assertEquals('http://localhost:8000/heroes/',self.browser.current_url)
 
+		# When she selects one of the heroes, she is sent to another page
+		# containing more information about the hero (additional stats, lore, image).
+		cloud_view = self.browser.find_element_by_id('jester-view')	
+		cloud_view.click()
+		self.assertEquals('http://localhost:8000/hero/jester/',
+		self.browser.current_url)
+		list_of_attributes = self.browser.find_elements_by_tag_name('dt')
+		self.assertIn('Health Points', list_of_attributes[0].text)
+		self.assertIn('Base Attack Damage', list_of_attributes[1].text)
+		self.assertIn('Skills', list_of_attributes[2].text)
+		self.assertIn('Lore', list_of_attributes[3].text)
+		# She spots the page title and header mentions the name of the hero she selected.
+		self.assertIn('Detail - Jester', self.browser.title)
+
+		# While she is in a specific hero's page, she sees a button labeled "Back to Heroes List".
+		# She clicks this and she is redirected back to the wiki's homepage.
+		back_to_heroes_list_button = self.browser.find_element_by_tag_name('button')
+		self.assertIn('Back to Heroes List', back_to_heroes_list_button.text)
+		back_to_heroes_list_button.click()
+		self.assertEquals('http://localhost:8000/heroes/',self.browser.current_url)
+
+		# When she selects one of the heroes, she is sent to another page
+		# containing more information about the hero (additional stats, lore, image).
+		cloud_view = self.browser.find_element_by_id('sunflowey-view')	
+		cloud_view.click()
+		self.assertEquals('http://localhost:8000/hero/sunflowey/',
+		self.browser.current_url)
+		list_of_attributes = self.browser.find_elements_by_tag_name('dt')
+		self.assertIn('Health Points', list_of_attributes[0].text)
+		self.assertIn('Base Attack Damage', list_of_attributes[1].text)
+		self.assertIn('Skills', list_of_attributes[2].text)
+		self.assertIn('Lore', list_of_attributes[3].text)
+		# She spots the page title and header mentions the name of the hero she selected.
+		self.assertIn('Detail - Sunflowey', self.browser.title)
+
+		# While she is in a specific hero's page, she sees a button labeled "Back to Heroes List".
+		# She clicks this and she is redirected back to the wiki's homepage.
+		back_to_heroes_list_button = self.browser.find_element_by_tag_name('button')
+		self.assertIn('Back to Heroes List', back_to_heroes_list_button.text)
+		back_to_heroes_list_button.click()
+		self.assertEquals('http://localhost:8000/heroes/',self.browser.current_url)
+
 		#time 
 		time.sleep(5)
 		
-
+		self.fail('Finish the test!')
 
 if __name__ == '__main__':
 	unittest.main(warnings='ignore')
