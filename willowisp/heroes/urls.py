@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.urls import path
-# from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from . import views
 
@@ -13,5 +12,3 @@ urlpatterns = [
     path('hero/jester/', views.JesterView.as_view(), name='jester_view'),
 
 ]
-
-# urlpatterns += staticfiles_urlpatterns()
